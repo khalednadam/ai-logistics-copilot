@@ -1,0 +1,21 @@
+{
+  "name": "portside",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "nadam.dev",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "tsc --noEmit",
+    "dev": "tsx watch api/src/server.ts"
+  },
+  "workspaces": [
+    "api"
+  ],
+  "devDependencies": {
+    "@types/node": "^24",
+    "typescript": "^7.0.2",
+    "tsx": "^4.23.15"
+  }
+}
