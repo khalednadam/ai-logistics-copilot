@@ -6,7 +6,7 @@
   "author": "nadam.dev",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "dev": "tsx watch api/src/server.ts"
   },
@@ -15,7 +15,9 @@
   ],
   "devDependencies": {
     "@types/node": "^24",
+    "tsx": "^4.23.15",
     "typescript": "^7.0.2",
-    "tsx": "^4.23.15"
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
   }
 }
