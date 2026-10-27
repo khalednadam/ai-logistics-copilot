@@ -1,0 +1,8 @@
+[
+  { "id": "M001", "name": "Lumen Home Goods", "contactEmail": "ops@lumenhome.example", "country": "DE" },
+  { "id": "M002", "name": "Northpeak Outdoor", "contactEmail": "support@northpeak.example", "country": "US" },
+  { "id": "M003", "name": "Petit Atelier", "contactEmail": "bonjour@petitatelier.example", "country": "FR" },
+  { "id": "M004", "name": "Kiwi Gadget Co", "contactEmail": "hello@kiwigadget.example", "country": "NZ" },
+  { "id": "M005", "name": "Brightside Beauty", "contactEmail": "team@brightside.example", "country": "GB" },
+  { "id": "M006", "name": "Maple & Thread", "contactEmail": "orders@maplethread.example", "country": "CA" }
+]

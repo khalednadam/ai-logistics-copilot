@@ -1,0 +1,37 @@
+[
+  {
+    "id": "stuck-customs-de",
+    "from": "ops@lumenhome.example",
+    "subject": "URGENT order 4412 still not delivered!!",
+    "body": "Hi team,\n\nour customer in Munich has been waiting for order #4412 for over a week now. tracking just says something about customs?? It was supposed to arrive by the 24th. These are the rechargeable lamps + candles. We paid DDP so the customer should NOT be paying anything at the door.\n\nPlease tell me what is going on and what I should tell her.\n\nThanks\nAnna\nLumen Home Goods",
+    "expected": { "orderIds": ["4412"], "intent": "delay_inquiry" }
+  },
+  {
+    "id": "multi-order-wismo",
+    "from": "support@northpeak.example",
+    "subject": "status check",
+    "body": "hey quick one - can u check where 4402 and 4414 are at? also 4408 hasnt moved in days, customer is asking. ty\n\n- Marcus @ Northpeak",
+    "expected": { "orderIds": ["4402", "4414", "4408"], "intent": "status_inquiry" }
+  },
+  {
+    "id": "tracking-number-only",
+    "from": "team@brightside.example",
+    "subject": "Fwd: Where is my parcel?",
+    "body": "Forwarding below from a customer in the UK, can you look into it?\n\n---------- Forwarded message ---------\nFrom: Jess <jess.k@mail.example>\nI ordered a perfume set 2 weeks ago, tracking PS4417SZGB hasn't updated since it landed. Do I have to pay something?\n----------\n\nBrightside Beauty",
+    "expected": { "orderIds": ["4417"], "intent": "delay_inquiry" }
+  },
+  {
+    "id": "return-damaged",
+    "from": "orders@maplethread.example",
+    "subject": "Re: Re: problem with shipment",
+    "body": "Following up again on order no. 4406. The carrier marked it as an exception and the customer in Toronto says the box arrived torn and half the yarn was missing. We want a replacement shipped or a refund for the lost units. Order value was around $39.\n\nMaple & Thread",
+    "expected": { "orderIds": ["4406"], "intent": "damage_claim" }
+  },
+  {
+    "id": "unknown-order",
+    "from": "hello@kiwigadget.example",
+    "subject": "Shipping quote + order 9931",
+    "body": "Kia ora,\n\nTwo things: (1) can you quote shipping for 200 power banks from Shenzhen to Auckland, DDU? (2) Our order 9931 never arrived, please check.\n\nCheers, Tama",
+    "expected": { "orderIds": ["9931"], "intent": "status_inquiry", "note": "9931 is not seeded: /extract should extract it, and the lookup should flag it as not found" }
+  }
+]

@@ -8,7 +8,10 @@
   "scripts": {
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "dev": "tsx watch api/src/server.ts"
+    "dev": "tsx watch --env-file=.env api/src/server.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:seed": "tsx --env-file=.env api/src/db/seed.ts"
   },
   "workspaces": [
     "api"

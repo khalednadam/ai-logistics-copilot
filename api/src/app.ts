@@ -1,13 +1,14 @@
-import express, { type Response } from "express";
+import express from "express";
 import { errorHandler, notFound } from "./middleware/errors.ts";
+import extractRouter from "./routes/extract.ts";
+import healthRouter from "./routes/health.ts";
 
 const app = express();
 
 app.use(express.json());
 
-app.get("/health", (_req, res: Response) => {
-  res.status(200).json({ status: "ok" });
-});
+app.use(healthRouter);
+app.use(extractRouter);
 
 app.use(notFound);
 app.use(errorHandler);

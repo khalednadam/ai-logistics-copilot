@@ -1,0 +1,470 @@
+[
+  {
+    "orderId": "4401",
+    "merchantId": "M001",
+    "originHub": "yiwu",
+    "destinationCountry": "DE",
+    "status": "delivered",
+    "carrier": "PortExpress",
+    "trackingNumber": "PS4401YWDE",
+    "incoterm": "DDP",
+    "declaredValueCents": 2900,
+    "currency": "EUR",
+    "items": [
+      {
+        "sku": "LH-CAN-01",
+        "description": "Soy wax candle set",
+        "hsCode": "340600",
+        "quantity": 2,
+        "unitValueCents": 1450,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": "2026-10-08"
+  },
+  {
+    "orderId": "4402",
+    "merchantId": "M002",
+    "originHub": "shenzhen",
+    "destinationCountry": "US",
+    "status": "in_transit",
+    "carrier": "SilkLine Air",
+    "trackingNumber": "PS4402SZUS",
+    "incoterm": "DDU",
+    "declaredValueCents": 2299,
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "NP-HL-200",
+        "description": "LED headlamp",
+        "hsCode": "851310",
+        "quantity": 1,
+        "unitValueCents": 2299,
+        "containsBattery": true
+      }
+    ],
+    "estimatedDelivery": "2026-10-30"
+  },
+  {
+    "orderId": "4403",
+    "merchantId": "M003",
+    "originHub": "yiwu",
+    "destinationCountry": "FR",
+    "status": "out_for_delivery",
+    "carrier": "BlueWave Post",
+    "trackingNumber": "PS4403YWFR",
+    "incoterm": "DDP",
+    "declaredValueCents": 5400,
+    "currency": "EUR",
+    "items": [
+      {
+        "sku": "PA-SCF-3",
+        "description": "Silk-blend scarf",
+        "hsCode": "621410",
+        "quantity": 3,
+        "unitValueCents": 1800,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": "2026-10-27"
+  },
+  {
+    "orderId": "4404",
+    "merchantId": "M004",
+    "originHub": "shenzhen",
+    "destinationCountry": "NZ",
+    "status": "label_created",
+    "carrier": "PortExpress",
+    "trackingNumber": "PS4404SZNZ",
+    "incoterm": "DDU",
+    "declaredValueCents": 2650,
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "KG-PB-10K",
+        "description": "10000mAh power bank",
+        "hsCode": "850760",
+        "quantity": 1,
+        "unitValueCents": 2650,
+        "containsBattery": true
+      }
+    ],
+    "estimatedDelivery": "2026-11-12"
+  },
+  {
+    "orderId": "4405",
+    "merchantId": "M005",
+    "originHub": "shenzhen",
+    "destinationCountry": "GB",
+    "status": "delivered",
+    "carrier": "SilkLine Air",
+    "trackingNumber": "PS4405SZGB",
+    "incoterm": "DDP",
+    "declaredValueCents": 3800,
+    "currency": "GBP",
+    "items": [
+      {
+        "sku": "BB-SER-30",
+        "description": "Vitamin C serum 30ml",
+        "hsCode": "330499",
+        "quantity": 4,
+        "unitValueCents": 950,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": "2026-10-15"
+  },
+  {
+    "orderId": "4406",
+    "merchantId": "M006",
+    "originHub": "yiwu",
+    "destinationCountry": "CA",
+    "status": "exception",
+    "carrier": "BlueWave Post",
+    "trackingNumber": "PS4406YWCA",
+    "incoterm": "DDU",
+    "declaredValueCents": 3900,
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "MT-YRN-5",
+        "description": "Merino yarn bundle",
+        "hsCode": "510910",
+        "quantity": 5,
+        "unitValueCents": 780,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": null
+  },
+  {
+    "orderId": "4407",
+    "merchantId": "M001",
+    "originHub": "yiwu",
+    "destinationCountry": "DE",
+    "status": "in_transit",
+    "carrier": "PortExpress",
+    "trackingNumber": "PS4407YWDE",
+    "incoterm": "DDP",
+    "declaredValueCents": 3400,
+    "currency": "EUR",
+    "items": [
+      {
+        "sku": "LH-VAS-02",
+        "description": "Ceramic vase",
+        "hsCode": "691390",
+        "quantity": 1,
+        "unitValueCents": 3400,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": "2026-11-02"
+  },
+  {
+    "orderId": "4408",
+    "merchantId": "M002",
+    "originHub": "shenzhen",
+    "destinationCountry": "US",
+    "status": "customs_hold",
+    "carrier": "SilkLine Air",
+    "trackingNumber": "PS4408SZUS",
+    "incoterm": "DDU",
+    "declaredValueCents": 4599,
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "NP-STV-1",
+        "description": "Camping stove (no fuel)",
+        "hsCode": "732111",
+        "quantity": 1,
+        "unitValueCents": 4599,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": null
+  },
+  {
+    "orderId": "4409",
+    "merchantId": "M003",
+    "originHub": "yiwu",
+    "destinationCountry": "FR",
+    "status": "delivered",
+    "carrier": "BlueWave Post",
+    "trackingNumber": "PS4409YWFR",
+    "incoterm": "DDP",
+    "declaredValueCents": 3900,
+    "currency": "EUR",
+    "items": [
+      {
+        "sku": "PA-EAR-7",
+        "description": "Brass earrings",
+        "hsCode": "711719",
+        "quantity": 6,
+        "unitValueCents": 650,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": "2026-10-11"
+  },
+  {
+    "orderId": "4410",
+    "merchantId": "M004",
+    "originHub": "shenzhen",
+    "destinationCountry": "AU",
+    "status": "in_transit",
+    "carrier": "PortExpress",
+    "trackingNumber": "PS4410SZAU",
+    "incoterm": "DDP",
+    "declaredValueCents": 6398,
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "KG-EB-PRO",
+        "description": "Wireless earbuds",
+        "hsCode": "851830",
+        "quantity": 2,
+        "unitValueCents": 3199,
+        "containsBattery": true
+      }
+    ],
+    "estimatedDelivery": "2026-11-01"
+  },
+  {
+    "orderId": "4411",
+    "merchantId": "M005",
+    "originHub": "shenzhen",
+    "destinationCountry": "IE",
+    "status": "returned",
+    "carrier": "SilkLine Air",
+    "trackingNumber": "PS4411SZIE",
+    "incoterm": "DDP",
+    "declaredValueCents": 2400,
+    "currency": "EUR",
+    "items": [
+      {
+        "sku": "BB-NP-12",
+        "description": "Nail polish set",
+        "hsCode": "330430",
+        "quantity": 2,
+        "unitValueCents": 1200,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": null
+  },
+  {
+    "orderId": "4412",
+    "merchantId": "M001",
+    "originHub": "shenzhen",
+    "destinationCountry": "DE",
+    "status": "customs_hold",
+    "carrier": "PortExpress",
+    "trackingNumber": "PS4412SZDE",
+    "incoterm": "DDP",
+    "declaredValueCents": 11450,
+    "currency": "EUR",
+    "items": [
+      {
+        "sku": "LH-LMP-09",
+        "description": "Rechargeable table lamp",
+        "hsCode": "940520",
+        "quantity": 3,
+        "unitValueCents": 2850,
+        "containsBattery": true
+      },
+      {
+        "sku": "LH-CAN-01",
+        "description": "Soy wax candle set",
+        "hsCode": "340600",
+        "quantity": 2,
+        "unitValueCents": 1450,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": "2026-10-24"
+  },
+  {
+    "orderId": "4413",
+    "merchantId": "M006",
+    "originHub": "yiwu",
+    "destinationCountry": "US",
+    "status": "out_for_delivery",
+    "carrier": "BlueWave Post",
+    "trackingNumber": "PS4413YWUS",
+    "incoterm": "DDU",
+    "declaredValueCents": 2670,
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "MT-NDL-SET",
+        "description": "Bamboo knitting needles",
+        "hsCode": "731990",
+        "quantity": 3,
+        "unitValueCents": 890,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": "2026-10-27"
+  },
+  {
+    "orderId": "4414",
+    "merchantId": "M002",
+    "originHub": "shenzhen",
+    "destinationCountry": "CA",
+    "status": "label_created",
+    "carrier": "SilkLine Air",
+    "trackingNumber": "PS4414SZCA",
+    "incoterm": "DDU",
+    "declaredValueCents": 8999,
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "NP-GPS-2",
+        "description": "Handheld GPS unit",
+        "hsCode": "852691",
+        "quantity": 1,
+        "unitValueCents": 8999,
+        "containsBattery": true
+      }
+    ],
+    "estimatedDelivery": "2026-11-14"
+  },
+  {
+    "orderId": "4415",
+    "merchantId": "M003",
+    "originHub": "yiwu",
+    "destinationCountry": "BE",
+    "status": "in_transit",
+    "carrier": "BlueWave Post",
+    "trackingNumber": "PS4415YWBE",
+    "incoterm": "DDP",
+    "declaredValueCents": 4400,
+    "currency": "EUR",
+    "items": [
+      {
+        "sku": "PA-BAG-1",
+        "description": "Canvas tote bag",
+        "hsCode": "420222",
+        "quantity": 4,
+        "unitValueCents": 1100,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": "2026-11-03"
+  },
+  {
+    "orderId": "4416",
+    "merchantId": "M004",
+    "originHub": "shenzhen",
+    "destinationCountry": "NZ",
+    "status": "delivered",
+    "carrier": "PortExpress",
+    "trackingNumber": "PS4416SZNZ",
+    "incoterm": "DDU",
+    "declaredValueCents": 3990,
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "KG-CBL-3",
+        "description": "USB-C cable 3-pack",
+        "hsCode": "854442",
+        "quantity": 10,
+        "unitValueCents": 399,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": "2026-10-09"
+  },
+  {
+    "orderId": "4417",
+    "merchantId": "M005",
+    "originHub": "shenzhen",
+    "destinationCountry": "GB",
+    "status": "customs_hold",
+    "carrier": "SilkLine Air",
+    "trackingNumber": "PS4417SZGB",
+    "incoterm": "DDP",
+    "declaredValueCents": 4800,
+    "currency": "GBP",
+    "items": [
+      {
+        "sku": "BB-PRF-50",
+        "description": "Eau de parfum 50ml",
+        "hsCode": "330300",
+        "quantity": 2,
+        "unitValueCents": 2400,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": null
+  },
+  {
+    "orderId": "4418",
+    "merchantId": "M001",
+    "originHub": "yiwu",
+    "destinationCountry": "AT",
+    "status": "in_transit",
+    "carrier": "PortExpress",
+    "trackingNumber": "PS4418YWAT",
+    "incoterm": "DDP",
+    "declaredValueCents": 3900,
+    "currency": "EUR",
+    "items": [
+      {
+        "sku": "LH-THR-04",
+        "description": "Cotton throw blanket",
+        "hsCode": "630140",
+        "quantity": 1,
+        "unitValueCents": 3900,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": "2026-11-04"
+  },
+  {
+    "orderId": "4419",
+    "merchantId": "M006",
+    "originHub": "yiwu",
+    "destinationCountry": "CA",
+    "status": "delivered",
+    "carrier": "BlueWave Post",
+    "trackingNumber": "PS4419YWCA",
+    "incoterm": "DDU",
+    "declaredValueCents": 3000,
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "MT-PAT-BK",
+        "description": "Pattern book",
+        "hsCode": "490199",
+        "quantity": 2,
+        "unitValueCents": 1500,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": "2026-10-12"
+  },
+  {
+    "orderId": "4420",
+    "merchantId": "M002",
+    "originHub": "shenzhen",
+    "destinationCountry": "DE",
+    "status": "exception",
+    "carrier": "SilkLine Air",
+    "trackingNumber": "PS4420SZDE",
+    "incoterm": "DDP",
+    "declaredValueCents": 6250,
+    "currency": "EUR",
+    "items": [
+      {
+        "sku": "NP-MAG-SET",
+        "description": "Magnetic phone mount",
+        "hsCode": "830249",
+        "quantity": 5,
+        "unitValueCents": 1250,
+        "containsBattery": false
+      }
+    ],
+    "estimatedDelivery": null
+  }
+]
