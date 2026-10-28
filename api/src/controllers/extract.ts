@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import type { ExtractRequest } from "../services/extract.ts";
+import type { ExtractRequest } from "../services/extractRequest.schema.ts";
 import { extractFromEmail } from "../services/extract.ts";
 
 export async function extract(req: Request, res: Response) {
