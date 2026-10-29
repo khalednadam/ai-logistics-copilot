@@ -16,7 +16,7 @@ export const merchants = pgTable("merchants", {
   id: text().primaryKey(),
   name: text().notNull(),
   contactEmail: text().notNull().unique(),
-  country: char({ length: 2 }).notNull(), // ISO 3166-1 alpha-2
+  country: char({ length: 2 }).notNull(),
 });
 
 export type ShipmentItem = {
@@ -39,7 +39,6 @@ export const shipments = pgTable("shipments", {
   carrier: text().notNull(),
   trackingNumber: text().notNull().unique(),
   incoterm: incoterm().notNull(),
-  // Money as integer minor units: floats can't represent 0.10 exactly.
   declaredValueCents: integer().notNull(),
   currency: char({ length: 3 }).notNull(),
   items: jsonb().$type<ShipmentItem[]>().notNull(),

@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// What the LLM must return. Descriptions are sent to the model inside the tool schema.
 export const ExtractionResult = z.object({
   orderIds: z
     .array(z.string())

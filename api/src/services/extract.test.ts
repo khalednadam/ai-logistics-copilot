@@ -2,7 +2,6 @@ import type Anthropic from "@anthropic-ai/sdk";
 import { describe, expect, it } from "vitest";
 import { parseResponse } from "./extract.ts";
 
-// parseResponse only reads content and stop_reason, so the cast skips the other required fields.
 const makeMessage = (
   content: Anthropic.ContentBlock[],
   stopReason: Anthropic.StopReason = "tool_use",
@@ -16,7 +15,6 @@ const makeToolUseBlock = (input: unknown) =>
     input,
   }) as Anthropic.ToolUseBlock;
 
-// Passes the schema as-is; each test breaks one field so a failure points at that field.
 const validInput = {
   orderIds: ["4412"],
   trackingNumbers: [],
