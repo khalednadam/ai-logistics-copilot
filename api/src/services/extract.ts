@@ -27,7 +27,7 @@ type ParseOutcome =
   | { ok: true; data: ExtractionResult }
   | { ok: false; reason: string; toolUseBlock?: Anthropic.ToolUseBlock };
 
-function parseResponse(response: Anthropic.Message): ParseOutcome {
+export const parseResponse = (response: Anthropic.Message): ParseOutcome => {
   if (response.stop_reason === "max_tokens") {
     return { ok: false, reason: "response hit max_tokens" };
   }
@@ -41,11 +41,11 @@ function parseResponse(response: Anthropic.Message): ParseOutcome {
   const result = ExtractionResult.safeParse(toolUseBlock.input);
   if (result.success) return { ok: true, data: result.data };
   return { ok: false, reason: z.prettifyError(result.error), toolUseBlock };
-}
+};
 
-export async function extractFromEmail(
+export const extractFromEmail = async (
   email: ExtractRequest,
-): Promise<ExtractionResult> {
+): Promise<ExtractionResult> => {
   const userText = `<email>
 From: ${email.from}
 Subject: ${email.subject}
@@ -96,4 +96,4 @@ ${email.body}
   const secondOutcome = parseResponse(secondResponse);
   if (secondOutcome.ok) return secondOutcome.data;
   throw new AppError(502, "EXTRACTION_FAILED", secondOutcome.reason);
-}
+};
