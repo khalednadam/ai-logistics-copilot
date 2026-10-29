@@ -9,7 +9,7 @@ import { ExtractionResult } from "./extractionResult.schema.ts";
 const anthropic = new Anthropic({ timeout: 60000 });
 
 const prompt = readFileSync(
-  join(import.meta.dirname, "../../../prompts/extract.v1.md"),
+  join(import.meta.dirname, "../../../prompts/extract.v2.md"),
   "utf-8",
 );
 

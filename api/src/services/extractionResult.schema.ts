@@ -22,12 +22,12 @@ export const ExtractionResult = z.object({
       "other",
     ])
     .describe(
-      "The main thing the sender wants. If there are several, pick the most pressing one.",
+      "What the sender is asking for. If several, pick the first in this order: delay_inquiry, damage_claim, status_inquiry, quote_request, return_request, other.",
     ),
   urgency: z
     .enum(["high", "normal", "low"])
     .describe(
-      "high: missed delivery date, angry or escalating tone, or money at stake. low: no time pressure. Otherwise normal.",
+      "Urgency as the email states it. high: sender mentions a missed date, money at stake, or an urgent or escalating tone. low: no time pressure. Otherwise normal.",
     ),
   summary: z
     .string()

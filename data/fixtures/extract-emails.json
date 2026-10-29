@@ -18,7 +18,7 @@
     "from": "team@brightside.example",
     "subject": "Fwd: Where is my parcel?",
     "body": "Forwarding below from a customer in the UK, can you look into it?\n\n---------- Forwarded message ---------\nFrom: Jess <jess.k@mail.example>\nI ordered a perfume set 2 weeks ago, tracking PS4417SZGB hasn't updated since it landed. Do I have to pay something?\n----------\n\nBrightside Beauty",
-    "expected": { "orderIds": ["4417"], "intent": "delay_inquiry" }
+    "expected": { "orderIds": [], "intent": "status_inquiry", "note": "PS4417SZGB belongs to order 4417: the DB lookup maps it, not the LLM. Stalled tracking with no missed date is status, not delay" }
   },
   {
     "id": "return-damaged",
@@ -32,6 +32,6 @@
     "from": "hello@kiwigadget.example",
     "subject": "Shipping quote + order 9931",
     "body": "Kia ora,\n\nTwo things: (1) can you quote shipping for 200 power banks from Shenzhen to Auckland, DDU? (2) Our order 9931 never arrived, please check.\n\nCheers, Tama",
-    "expected": { "orderIds": ["9931"], "intent": "status_inquiry", "note": "9931 is not seeded: /extract should extract it, and the lookup should flag it as not found" }
+    "expected": { "orderIds": ["9931"], "intent": "delay_inquiry", "note": "9931 is not seeded: /extract should extract it, and the lookup should flag it as not found" }
   }
 ]
