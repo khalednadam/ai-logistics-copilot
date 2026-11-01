@@ -1,4 +1,17 @@
-import { char, date, integer, jsonb, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
+import {
+  char,
+  customType,
+  date,
+  integer,
+  jsonb,
+  pgEnum,
+  pgTable,
+  text,
+  timestamp,
+  unique,
+  vector,
+} from "drizzle-orm/pg-core";
 
 export const originHub = pgEnum("origin_hub", ["shenzhen", "yiwu"]);
 export const incoterm = pgEnum("incoterm", ["DDP", "DDU"]);
@@ -47,3 +60,27 @@ export const shipments = pgTable("shipments", {
   updatedAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
 });
 
+const tsvector = customType<{ data: string }>({
+  dataType: () => "tsvector",
+});
+
+export const documents = pgTable("documents", {
+  id: text().primaryKey(),
+  title: text().notNull(),
+  contentHash: text().notNull(),
+});
+
+export const chunks = pgTable(
+  "chunks",
+  {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    documentId: text()
+      .notNull()
+      .references(() => documents.id, { onDelete: "cascade" }),
+    chunkIndex: integer().notNull(),
+    content: text().notNull(),
+    embedding: vector({ dimensions: 1024 }).notNull(),
+    searchVector: tsvector().generatedAlwaysAs(sql`to_tsvector('english', content)`),
+  },
+  (table) => [unique().on(table.documentId, table.chunkIndex)],
+);
