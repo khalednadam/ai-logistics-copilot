@@ -1,0 +1,6 @@
+{
+  "name": "@portside/rag",
+  "author": "nadam.dev",
+  "type": "module",
+  "private": true
+}
