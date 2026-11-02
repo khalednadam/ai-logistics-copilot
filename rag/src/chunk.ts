@@ -8,14 +8,20 @@ type ChunkedDocument = {
   chunks: DocumentChunk[];
 };
 
-export function chunkDocument(document: string): ChunkedDocument {
-  const chunks: DocumentChunk[] = [];
-  const lines = document.split("\n");
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    if (line.startsWith("## ")) {
-      chunks.push({ chunkIndex: i, content: line });
-    }
+export const chunkDocument = (markdown: string): ChunkedDocument => {
+  const titleMatch = markdown.match(/^# (.+)$/m);
+  if (!titleMatch) {
+    throw new Error("No title found in markdown");
   }
-  return { title: document.split("\n")[0], chunks };
-}
+  const sections = markdown
+    .split(/^## /m)
+    .slice(1)
+    .map((section) => section.trim());
+  return {
+    title: titleMatch[1],
+    chunks: sections.map((section, index) => ({
+      chunkIndex: index,
+      content: `${titleMatch[1]}\n${section}`,
+    })),
+  };
+};
