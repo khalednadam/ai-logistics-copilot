@@ -2,5 +2,8 @@
   "name": "@portside/rag",
   "author": "nadam.dev",
   "type": "module",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "zod": "^4.6.7"
+  }
 }
