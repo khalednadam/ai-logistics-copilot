@@ -65,5 +65,8 @@ export const hybridSearch = async (question: string, limit: number) => {
   const [questionEmbedding] = await embedTexts([question], "query");
   const vectorResults = await searchByVector(questionEmbedding, limit * 2);
   const keywordResults = await searchByKeyword(question, limit * 2);
-  return mergeByRank(vectorResults, keywordResults, limit);
+  return {
+    chunks: mergeByRank(vectorResults, keywordResults, limit),
+    closestDistance: vectorResults[0]?.distance,
+  };
 };
