@@ -4,7 +4,11 @@
   "type": "module",
   "private": true,
   "dependencies": {
+    "@portside/db": "*",
     "drizzle-orm": "^0.45.4",
     "zod": "^4.6.7"
+  },
+  "exports": {
+    "./retrieve": "./src/retrieve.ts"
   }
 }

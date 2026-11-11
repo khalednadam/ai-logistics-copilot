@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFileSync, readdirSync } from "node:fs";
-import { db } from "../../api/src/db/index.ts";
-import { chunks, documents } from "../../api/src/db/schema.ts";
+import { db } from "@portside/db";
+import { chunks, documents } from "@portside/db/schema";
 import { eq } from "drizzle-orm";
 import { chunkDocument } from "./chunk.ts";
 import { embedTexts } from "./embed.ts";

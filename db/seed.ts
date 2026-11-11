@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { db } from "./index.ts";
 import { merchants, shipments } from "./schema.ts";
 
-const load = <T>(file: string): T => JSON.parse(readFileSync(new URL(`../../../data/seed/${file}`, import.meta.url), "utf8"));
+const load = <T>(file: string): T => JSON.parse(readFileSync(new URL(`../data/seed/${file}`, import.meta.url), "utf8"));
 
 const merchantRows = load<(typeof merchants.$inferInsert)[]>("merchants.json");
 const shipmentRows = load<(typeof shipments.$inferInsert)[]>("shipments.json");

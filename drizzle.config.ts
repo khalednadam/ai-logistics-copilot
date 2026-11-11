@@ -5,8 +5,8 @@ if (!process.env.DATABASE_URL) throw new Error("DATABASE_URL is not set (see .en
 
 export default defineConfig({
   dialect: "postgresql",
-  schema: "./api/src/db/schema.ts",
-  out: "./api/drizzle",
+  schema: "./db/schema.ts",
+  out: "./db/drizzle",
   casing: "snake_case",
   dbCredentials: { url: process.env.DATABASE_URL },
 });

@@ -1,6 +1,6 @@
 import { asc, cosineDistance, desc, sql } from "drizzle-orm";
-import { chunks } from "../../api/src/db/schema.ts";
-import { db } from "../../api/src/db/index.ts";
+import { chunks } from "@portside/db/schema";
+import { db } from "@portside/db";
 import { embedTexts } from "./embed.ts";
 
 type RetrieveChunk = {

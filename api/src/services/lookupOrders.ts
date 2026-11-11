@@ -1,6 +1,6 @@
 import { inArray } from "drizzle-orm";
-import { db } from "../db/index.ts";
-import { shipments } from "../db/schema.ts";
+import { db } from "@portside/db";
+import { shipments } from "@portside/db/schema";
 
 type Shipment = typeof shipments.$inferSelect;
 
