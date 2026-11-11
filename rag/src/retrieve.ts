@@ -10,7 +10,7 @@ type RetrieveChunk = {
 };
 
 export const searchByVector = (questionEmbedding: number[], limit: number) => {
-  const distance = cosineDistance(chunks.embedding, questionEmbedding);
+  const distance = cosineDistance(chunks.embedding, questionEmbedding).mapWith(Number);
   return db
     .select({
       id: chunks.id,
@@ -61,7 +61,7 @@ export const mergeByRank = (
     .slice(0, limit);
 };
 
-export const hybridSearch = async (question: string, limit: number) => {
+export const hybridSearch = async (question: string, limit: number): Promise<{ chunks: RetrieveChunk[]; closestDistance: number | undefined }> => {
   const [questionEmbedding] = await embedTexts([question], "query");
   const vectorResults = await searchByVector(questionEmbedding, limit * 2);
   const keywordResults = await searchByKeyword(question, limit * 2);
