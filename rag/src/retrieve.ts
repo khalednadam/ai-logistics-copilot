@@ -3,7 +3,7 @@ import { chunks } from "@portside/db/schema";
 import { db } from "@portside/db";
 import { embedTexts } from "./embed.ts";
 
-type RetrieveChunk = {
+export type RetrieveChunk = {
   id: number;
   documentId: string;
   content: string;
