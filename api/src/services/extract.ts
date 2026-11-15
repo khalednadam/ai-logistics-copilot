@@ -2,22 +2,18 @@ import { z } from "zod";
 import { AppError } from "../errors.ts";
 import { readFileSync } from "fs";
 import { join } from "path";
-import Anthropic from "@anthropic-ai/sdk";
+import type Anthropic from "@anthropic-ai/sdk";
 import { ExtractRequest } from "./extractRequest.schema.ts";
 import { ExtractionResult } from "./extractionResult.schema.ts";
 import { logLlmCall } from "../llm/logLlmCall.ts";
+import { anthropic, model } from "../llm/client.ts";
 
 const PROMPT_VERSION = "v2";
-
-const anthropic = new Anthropic({ timeout: 60000 });
 
 const prompt = readFileSync(
   join(import.meta.dirname, `../../../prompts/extract.${PROMPT_VERSION}.md`),
   "utf-8",
 );
-
-if (!process.env.LLM_MODEL) throw new Error("LLM_MODEL is not set");
-const model = process.env.LLM_MODEL;
 
 const extractionTool: Anthropic.Tool = {
   name: "record_extraction",
