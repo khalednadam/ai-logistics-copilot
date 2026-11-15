@@ -5,6 +5,7 @@ import { join } from "path";
 import Anthropic from "@anthropic-ai/sdk";
 import { ExtractRequest } from "./extractRequest.schema.ts";
 import { ExtractionResult } from "./extractionResult.schema.ts";
+import { logLlmCall } from "../llm/logLlmCall.ts";
 
 const PROMPT_VERSION = "v2";
 
@@ -17,28 +18,6 @@ const prompt = readFileSync(
 
 if (!process.env.LLM_MODEL) throw new Error("LLM_MODEL is not set");
 const model = process.env.LLM_MODEL;
-
-const INPUT_PRICE_PER_MILLION = 0.1;
-const OUTPUT_PRICE_PER_MILLION = 0.5;
-
-const logLlmCall = (response: Anthropic.Message, latencyMs: number) => {
-  const { input_tokens, output_tokens } = response.usage;
-  const estimatedCostUsd =
-    (input_tokens * INPUT_PRICE_PER_MILLION +
-      output_tokens * OUTPUT_PRICE_PER_MILLION) /
-    1_000_000;
-  console.log(
-    JSON.stringify({
-      event: "llm_call",
-      model: response.model,
-      promptVersion: `extract.${PROMPT_VERSION}`,
-      inputTokens: input_tokens,
-      outputTokens: output_tokens,
-      latencyMs,
-      estimatedCostUsd,
-    }),
-  );
-};
 
 const extractionTool: Anthropic.Tool = {
   name: "record_extraction",
@@ -92,7 +71,7 @@ ${email.body}
     ...sharedRequestParams,
     messages: firstMessages,
   });
-  logLlmCall(firstResponse, Date.now() - firstStartedAt);
+  logLlmCall(firstResponse, Date.now() - firstStartedAt, "extract", PROMPT_VERSION);
   const firstOutcome = parseResponse(firstResponse);
   if (firstOutcome.ok) return firstOutcome.data;
 
@@ -119,7 +98,7 @@ ${email.body}
       },
     ],
   });
-  logLlmCall(secondResponse, Date.now() - secondStartedAt);
+  logLlmCall(secondResponse, Date.now() - secondStartedAt, "extract", PROMPT_VERSION);
   const secondOutcome = parseResponse(secondResponse);
   if (secondOutcome.ok) return secondOutcome.data;
   throw new AppError(502, "EXTRACTION_FAILED", secondOutcome.reason);
