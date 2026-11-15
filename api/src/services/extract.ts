@@ -67,7 +67,12 @@ ${email.body}
     ...sharedRequestParams,
     messages: firstMessages,
   });
-  logLlmCall(firstResponse, Date.now() - firstStartedAt, "extract", PROMPT_VERSION);
+  logLlmCall(
+    firstResponse,
+    Date.now() - firstStartedAt,
+    "extract",
+    PROMPT_VERSION,
+  );
   const firstOutcome = parseResponse(firstResponse);
   if (firstOutcome.ok) return firstOutcome.data;
 
@@ -94,7 +99,12 @@ ${email.body}
       },
     ],
   });
-  logLlmCall(secondResponse, Date.now() - secondStartedAt, "extract", PROMPT_VERSION);
+  logLlmCall(
+    secondResponse,
+    Date.now() - secondStartedAt,
+    "extract",
+    PROMPT_VERSION,
+  );
   const secondOutcome = parseResponse(secondResponse);
   if (secondOutcome.ok) return secondOutcome.data;
   throw new AppError(502, "EXTRACTION_FAILED", secondOutcome.reason);

@@ -41,8 +41,6 @@ const answerTool: Anthropic.Tool = {
   input_schema: z.toJSONSchema(AnswerResult) as Anthropic.Tool.InputSchema,
 };
 
-
-
 export const answerQuestion = async (
   question: string,
 ): Promise<AnswerResult> => {
@@ -59,16 +57,26 @@ export const answerQuestion = async (
     });
     logLlmCall(response, Date.now() - startedAt, "answer", PROMPT_VERSION);
     const result = parseResponse(response);
-    const badIds = result.citedChunkIds.filter(chunkId => !chunks.some(chunk => chunk.id === chunkId));
+    const badIds = result.citedChunkIds.filter(
+      (chunkId) => !chunks.some((chunk) => chunk.id === chunkId),
+    );
     if (badIds.length > 0) {
-      throw new AppError(502, "ANSWER_FAILED", `wrong chunks are included in the answer: ${badIds.join(", ")}`);
+      throw new AppError(
+        502,
+        "ANSWER_FAILED",
+        `wrong chunks are included in the answer: ${badIds.join(", ")}`,
+      );
     }
     if (result.answered && result.citedChunkIds.length === 0) {
-      throw new AppError(502, "ANSWER_FAILED", "answer provided but no chunks cited");
+      throw new AppError(
+        502,
+        "ANSWER_FAILED",
+        "answer provided but no chunks cited",
+      );
     }
     return result;
   }
-  
+
   return {
     answer: "I don't know. The policy docs don't cover this.",
     answered: false,
