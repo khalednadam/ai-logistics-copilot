@@ -18,20 +18,51 @@ const prompt = readFileSync(
   "utf-8",
 );
 
-export const parseResponse = (response: Anthropic.Message): AnswerResult => {
+type ParseOutcome =
+  | { ok: true; data: AnswerResult }
+  | { ok: false; reason: string; toolUseBlock?: Anthropic.ToolUseBlock };
+
+export const parseResponse = (
+  response: Anthropic.Message,
+  chunkIds: number[],
+): ParseOutcome => {
   if (response.stop_reason === "max_tokens") {
-    throw new AppError(502, "ANSWER_FAILED", "response hit max_tokens");
+    return { ok: false, reason: "response hit max_tokens" };
   }
   const toolUseBlock = response.content.find(
     (contentBlock): contentBlock is Anthropic.ToolUseBlock =>
       contentBlock.type === "tool_use" && contentBlock.name === answerTool.name,
   );
-  if (!toolUseBlock)
-    throw new AppError(502, "ANSWER_FAILED", "no tool_use block");
+  if (!toolUseBlock) {
+    return { ok: false, reason: "no tool_use block" };
+  }
 
   const result = AnswerResult.safeParse(toolUseBlock.input);
-  if (result.success) return result.data;
-  throw new AppError(502, "ANSWER_FAILED", z.prettifyError(result.error));
+  if (!result.success) {
+    return {
+      ok: false,
+      reason: z.prettifyError(result.error),
+      toolUseBlock,
+    };
+  }
+  const badIds = result.data.citedChunkIds.filter(
+    (chunkId) => !chunkIds.includes(chunkId),
+  );
+  if (badIds.length > 0) {
+    return {
+      ok: false,
+      reason: `wrong chunks are included in the answer: ${badIds.join(", ")}`,
+      toolUseBlock,
+    };
+  }
+  if (result.data.answered && result.data.citedChunkIds.length === 0) {
+    return {
+      ok: false,
+      reason: "answer provided but no chunks cited",
+      toolUseBlock,
+    };
+  }
+  return { ok: true, data: result.data };
 };
 
 const answerTool: Anthropic.Tool = {
@@ -46,35 +77,69 @@ export const answerQuestion = async (
 ): Promise<AnswerResult> => {
   const { chunks, closestDistance } = await hybridSearch(question, LIMIT);
   if (closestDistance !== undefined && closestDistance < DISTANCE_THRESHOLD) {
-    const startedAt = Date.now();
-    const response = await anthropic.messages.create({
+    const sharedRequestParams = {
       model,
       max_tokens: 1024,
       system: prompt,
       tools: [answerTool],
       tool_choice: { type: "tool" as const, name: answerTool.name },
-      messages: [{ role: "user", content: buildUserMessage(question, chunks) }],
+    };
+    const firstMessages: Anthropic.MessageParam[] = [
+      { role: "user", content: buildUserMessage(question, chunks) },
+    ];
+    const retrievedChunkIds = chunks.map((chunk) => chunk.id);
+    let startedAt: number = Date.now();
+    const firstResponse = await anthropic.messages.create({
+      ...sharedRequestParams,
+      messages: firstMessages,
     });
-    logLlmCall(response, Date.now() - startedAt, "answer", PROMPT_VERSION);
-    const result = parseResponse(response);
-    const badIds = result.citedChunkIds.filter(
-      (chunkId) => !chunks.some((chunk) => chunk.id === chunkId),
-    );
-    if (badIds.length > 0) {
-      throw new AppError(
-        502,
-        "ANSWER_FAILED",
-        `wrong chunks are included in the answer: ${badIds.join(", ")}`,
-      );
+    logLlmCall(firstResponse, Date.now() - startedAt, "answer", PROMPT_VERSION);
+
+    const firstOutcome = parseResponse(firstResponse, retrievedChunkIds);
+    if (firstOutcome.ok) {
+      return firstOutcome.data;
     }
-    if (result.answered && result.citedChunkIds.length === 0) {
-      throw new AppError(
-        502,
-        "ANSWER_FAILED",
-        "answer provided but no chunks cited",
+
+    if (firstOutcome.toolUseBlock) {
+      const secondMessages: Anthropic.MessageParam[] = [
+        ...firstMessages,
+        { role: "assistant", content: firstResponse.content },
+        {
+          role: "user",
+          content: [
+            {
+              type: "tool_result",
+              tool_use_id: firstOutcome.toolUseBlock.id,
+              is_error: true,
+              content: [
+                {
+                  type: "text",
+                  text: `Your answer was rejected. Fix these problems and call record_answer again:\n${firstOutcome.reason}`,
+                },
+              ],
+            },
+          ],
+        },
+      ];
+      startedAt = Date.now();
+      const secondResponse = await anthropic.messages.create({
+        ...sharedRequestParams,
+        messages: secondMessages,
+      });
+      logLlmCall(
+        secondResponse,
+        Date.now() - startedAt,
+        "answer",
+        PROMPT_VERSION,
       );
+      const secondOutcome = parseResponse(secondResponse, retrievedChunkIds);
+      if (secondOutcome.ok) {
+        return secondOutcome.data;
+      }
+      throw new AppError(502, "ANSWER_FAILED", secondOutcome.reason);
+    } else {
+      throw new AppError(502, "ANSWER_FAILED", firstOutcome.reason);
     }
-    return result;
   }
 
   return {
