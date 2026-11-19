@@ -1,0 +1,13 @@
+{
+  "name": "@portside/agent",
+  "author": "nadam.dev",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.3.0",
+    "@portside/db": "*",
+    "@portside/rag": "*",
+    "drizzle-orm": "^0.45.4",
+    "zod": "^4.6.7"
+  }
+}

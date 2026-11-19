@@ -17,7 +17,8 @@
   "workspaces": [
     "api",
     "db",
-    "rag"
+    "rag",
+    "agent"
   ],
   "devDependencies": {
     "@types/node": "^24",
